@@ -9,7 +9,9 @@ namespace SailwindConsole.Commands
 {
     internal class GetWeightCommand : Command
     {
-        public override string Name => "get_weight";
+        public override string Name => "getWeight";
+
+        public override string Description => "Get weight of held item";
 
         public override void OnRun(List<string> args)
         {
@@ -20,16 +22,16 @@ namespace SailwindConsole.Commands
                 ShipItem shipItem = heldItem.GetComponent<ShipItem>();
                 if (shipItem)
                 {
-                    ModConsole.Log($"Held Item Weight: {shipItem.mass}!");
+                    ModConsoleLog.Log($"Held Item Weight: {shipItem.mass}!");
                 }
                 else
                 {
-                    ModConsole.Log("Item held has no mass!");
+                    ModConsoleLog.Log("Item held has no mass!");
                 }
             }
             else
             {
-                ModConsole.Log("Not holding anything!");
+                ModConsoleLog.Log("Not holding anything!");
             }
         }
     }

@@ -10,15 +10,17 @@ namespace SailwindConsole.Commands
 {
     internal class WorldCoordsCommand : Command
     {
-        public override string Name => "get_world_coords";
+        public override string Name => "GetWorldCoords";
+
+        public override string Description => "Get your position in Unity coordinates";
 
         public override void OnRun(List<string> args)
         {
             Vector3 position = Utils.PlayerTransform.position;
-            ModConsole.Log($"Your current world position");
-            ModConsole.Log($"X: {position.x}");
-            ModConsole.Log($"Y: {position.y}");
-            ModConsole.Log($"Z: {position.z}");
+            ModConsoleLog.Log($"Your current world position");
+            ModConsoleLog.Log($"X: {position.x}");
+            ModConsoleLog.Log($"Y: {position.y}");
+            ModConsoleLog.Log($"Z: {position.z}");
         }
     }
 }

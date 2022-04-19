@@ -8,12 +8,14 @@ namespace SailwindConsole.Commands
 {
     internal class CurrentTimeCommand : Command
     {
-        public override string Name => "current_time";
+        public override string Name => "currentTime";
+
+        public override string Description => "Get both current local time and global time";
 
         public override void OnRun(List<string> args)
         {
-            ModConsole.Log($"Local Time: {Sun.sun.localTime:F2}");
-            ModConsole.Log($"Global Time: {Sun.sun.globalTime:F2}");
+            ModConsoleLog.Log($"Local Time: {Sun.sun.localTime:F2}");
+            ModConsoleLog.Log($"Global Time: {Sun.sun.globalTime:F2}");
             UISoundPlayer.instance.PlayOpenSound();
         }
     }

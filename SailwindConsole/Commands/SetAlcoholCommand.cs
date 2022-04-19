@@ -8,8 +8,11 @@ namespace SailwindConsole.Commands
 {
     internal class SetAlcoholCommand : Command
     {
-        public override string Name => "set_alcohol";
+        public override string Name => "setAlcohol";
         public override int MinArgs => 1;
+        public override string Usage => "<amount>";
+
+        public override string Description => "Set your alcohol level";
 
         public override void OnRun(List<string> args)
         {
@@ -18,7 +21,11 @@ namespace SailwindConsole.Commands
             {
                 PlayerNeeds.alcohol = amount;
                 Refs.playerMouthCol.PlayDrinkSound();
-                ModConsole.Log($"Set player alcohol to {amount}");
+                ModConsoleLog.Log($"Set player alcohol to {amount}");
+            }
+            else
+            {
+                ModConsoleLog.Error("Cannot have a value below 0!");
             }
         }
     }

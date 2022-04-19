@@ -10,6 +10,8 @@ namespace SailwindConsole
     {
         public abstract string Name { get; }
         public virtual string[] Aliases { get; } = new string[0];
+        public virtual string Usage { get; }
+        public abstract string Description { get; }
 
         public virtual int MinArgs { get; } = 0;
 

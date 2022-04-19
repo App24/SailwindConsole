@@ -9,8 +9,11 @@ namespace SailwindConsole.Commands
 {
     internal class SetTimeCommand : Command
     {
-        public override string Name => "set_time";
+        public override string Name => "setTime";
         public override int MinArgs => 1;
+        public override string Usage => "<time>";
+
+        public override string Description => "Set the time of day, you can go above 24 hours to skip days";
 
         public override void OnRun(List<string> args)
         {
@@ -19,7 +22,11 @@ namespace SailwindConsole.Commands
             {
                 Sun.sun.globalTime = time;
                 UISoundPlayer.instance.PlayOpenSound();
-                ModConsole.Log($"Time set to: {time}");
+                ModConsoleLog.Log($"Time set to: {time}");
+            }
+            else
+            {
+                ModConsoleLog.Error("Cannot have a value below 0!");
             }
         }
     }

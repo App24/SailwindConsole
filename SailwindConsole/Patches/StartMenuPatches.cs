@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using SailwindModdingHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace SailwindConsole.Patches
 {
     internal static class StartMenuPatches
     {
-        static bool paused;
 
         [HarmonyPatch(typeof(StartMenu), "LateUpdate")]
         private static class LateUpdatePatch
@@ -19,10 +19,9 @@ namespace SailwindConsole.Patches
             {
                 if (Main.enabled)
                 {
-                    if (Input.GetKeyDown(KeyCode.BackQuote) && !ModConsole.consoleInput.isFocused && paused)
+                    if (Input.GetKeyDown(KeyCode.BackQuote) && !ModConsole.consoleInput.isFocused && Utils.GamePaused)
                     {
                         ModConsole.ToggleConsole();
-                        ModConsole.consoleInput.DeactivateInputField();
                     }
                 }
             }
@@ -36,7 +35,6 @@ namespace SailwindConsole.Patches
                 if (Main.enabled)
                 {
                     ModConsole.ShowConsole();
-                    paused = true;
                 }
             }
         }
@@ -49,7 +47,6 @@ namespace SailwindConsole.Patches
                 if (Main.enabled)
                 {
                     ModConsole.HideConsole();
-                    paused = false;
                 }
             }
         }

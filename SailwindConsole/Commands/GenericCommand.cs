@@ -6,22 +6,29 @@ using System.Threading.Tasks;
 
 namespace SailwindConsole.Commands
 {
-    internal class GenericCommand : Command
+    public class GenericCommand : Command
     {
         private string name;
         private int minArgs;
         private Action<List<string>> onRun;
-        public override string Name => name;
-        override public int MinArgs => minArgs;
+        private string usage;
+        private string description;
 
-        public GenericCommand(string name, Action<List<string>> onRun, int minArgs)
+        public override string Name => name;
+        public override int MinArgs => minArgs;
+        public override string Usage => usage;
+        public override string Description => description;
+
+        public GenericCommand(string name, string description, int minArgs, string usage, Action<List<string>> onRun)
         {
             this.name = name;
             this.onRun = onRun;
             this.minArgs = minArgs;
+            this.usage = usage;
+            this.description = description;
         }
 
-        public GenericCommand(string name, Action<List<string>> onRun) : this(name, onRun, 0)
+        public GenericCommand(string name, string description, Action<List<string>> onRun) : this(name, description, 0, "", onRun)
         {
         }
 

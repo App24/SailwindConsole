@@ -8,8 +8,11 @@ namespace SailwindConsole.Commands
 {
     internal class SetSleepCommand : Command
     {
-        public override string Name => "set_sleep";
+        public override string Name => "setSleep";
         public override int MinArgs => 1;
+        public override string Usage => "<amount>";
+
+        public override string Description => "Set your sleep";
 
         public override void OnRun(List<string> args)
         {
@@ -18,7 +21,11 @@ namespace SailwindConsole.Commands
             {
                 PlayerNeeds.sleep = amount;
                 UISoundPlayer.instance.PlayOpenSound();
-                ModConsole.Log($"Set player sleep to {amount}");
+                ModConsoleLog.Log($"Set player sleep to {amount}");
+            }
+            else
+            {
+                ModConsoleLog.Error("Cannot have a value below 0!");
             }
         }
     }
